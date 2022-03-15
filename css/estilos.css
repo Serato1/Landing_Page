@@ -1,0 +1,456 @@
+/*FUENTES : https://fonts.google.com/specimen/Poppins?query=poppins */
+
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@300&family=Montserrat:wght@400;700&family=Open+Sans:wght@300;400;700&family=Poppins:wght@300;400;600;700&display=swap');
+
+
+:root{
+    /*root es una seudoclase*/
+    --padding-container: 100px 0;
+    --color-tittle: #001A49;
+
+    /*al ponerlo en la seudoclase todos los elementos podran acceder a estas custom propeties*/
+}
+
+/*PEGAMOS LA REGLA FONT-FAMILY*/
+body{
+    font-family: 'Poppins', sans-serif;
+}
+
+
+/*ES EL CONTENEDOR DE LA PAGINA*/
+
+.container{
+    width: 90%;
+    max-width: 1200px;
+    /*ancho maximo*/
+    margin: 0 auto;
+    /*que el width se centre verticalmente*/
+    overflow: hidden;
+    /*que todo lo que salga del elemento o recuadro se esconda*/
+    padding : var(--padding-container);
+    /*al colocar var , estamos llamando al elemento de la seudoclase*/
+
+}
+
+.hero{
+    width: 100%;
+    /*esto es el 100% del navegador y es para que pongamos la imagen de fonto y ocupe todo*/
+    height: 100vh;
+    /*el 100% del alto de la pantalla*/
+    min-height: 600px;
+    max-height: 800px;
+    /*esto es para los problemas en las ipad*/
+    position: relative;
+    /*para que el elemento se posicione a este contenedor*/
+    display: grid;
+    /*porque quiero crear 2 filas*/
+    grid-template-rows: 100px 1fr;
+    /*la primera fila 100 px / la segunda que tome el contenido sobrante de los 100px (fr)*/
+    color: #fff;
+}
+
+.hero::before{
+    content: "";
+    position: absolute;
+    /*para que se posicione absolutamente a su padre*/
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(180deg, #0000008c  0%, #0000008c 100%), url(../imagenes/computer.jpg);
+    /*aca le estamos dando transparencia a la imagen */
+    background-size: cover;
+    /*aca le estamos diciendo que se adapte la imagen*/
+    clip-path: polygon(0 0, 100% 0, 100% 80%, 50% 95%, 0 80%);
+    /*aca estamos copiando la figura de https://bennettfeely.com/clippy/ */
+    z-index: -1;
+    /*esto para que se vea el texto*/
+}
+
+/* NAV */
+
+.nav{
+    --padding-container: 0;
+    /*al colocar el custom propeties en 0 le estamos diciendo que no queremos sus cambios en esta clase (.nav)*/
+    height: 100px;
+    display: flex;
+    /*para poner a los elementos uno al lado del otro*/
+    align-items: center;
+    /*para centrarlos verticalmente*/
+}
+
+.nav__title {
+    font-weight: 300;
+    /*para que tenga un peso de fuente mas delgado*/
+}
+.nav__link {
+    margin-left: auto;
+    /*para que se posicionen hacia la derecha*/
+    padding: 0;
+    display: grid;
+    grid-auto-flow: column;
+    /*aca le estamos diciendo que el menu y su flujo sea en columnas (una al lado de la otra)*/
+    grid-auto-columns: max-content;
+    /*que mida por defecto su maximo contenido*/
+    gap: 2em;
+    /*que tenga un espaciado de 2em*/
+}
+.nav__items{
+    /*esta es la lista o (li)*/
+    list-style: none;
+    /*para que quite el estilo de lista*/
+}
+
+.nav__links{
+  color: white; 
+  /*le aplicamos colo a las opciones del menu */
+  text-decoration: none; 
+  /*aca le quitamos la linea a las opciones del menu*/
+}
+.nav__menu {
+    margin-left: auto;
+    cursor: pointer;
+    /*cursor pointer para que cada vez que pasemos el cursor por el menu se actuve la manita*/
+    display: none;
+    /*para que se oculte el menu*/
+}
+.nav__img {
+    display: block;
+    width: 30px;
+}
+
+.nav__close{
+    display: var(--show, none);
+}
+
+
+/*HERO CONTAINER*/
+
+
+.hero__container{
+    max-width: 800px;
+    display: grid;
+    --padding-container:0;
+    grid-auto-rows: max-content ;
+    /*que las filas que se crearon sean del maximo contenido*/
+    align-content: center;
+    /*que se alinien vverticalmente*/
+    gap: 1em;
+    /*espaciado*/
+    padding-bottom: 100px;
+    /*para que no se junte*/
+    text-align: center;
+    /*que todo su texto se centre*/
+
+}
+
+.hero__title {
+    /*es el titulo de la pagina*/
+    font-size: 3rem;
+}
+
+.hero__paragraph {
+    margin-bottom: 20px;
+}
+
+.cta{
+    /*Boton comenzar ahora*/
+    display: inline-block;
+    background-color: #2091f9;
+    justify-self: center;
+    /*esto hace que el color se adapte al contenido*/
+    color: white;
+    text-decoration: none;
+    padding: 13px 30px;
+    border-radius: 32px;
+}
+
+/*ABOUT*/
+
+.about{
+    text-align: center;
+}
+
+.subtitle{
+    color: var(--color-tittle);
+    font-size: 2rem;
+    margin-bottom: 25px;
+}
+.about__paragraph{
+    line-height: 1.7;
+    /*para que el texto tenga una separacion*/
+}
+
+.about__main {
+    padding-top: 80px;
+    /*esto es para que tenga un poco mas de espaciado desde el titulo*/
+    display: grid;
+    width: 90%;
+    margin: 0 auto;
+    gap: 1em;
+    overflow: hidden;
+    /*para que todo lo que salga se esconda*/
+    grid-template-columns: repeat(auto-fit, minmax(260px, auto));
+}
+  
+.about__icons{
+    display: grid;
+    gap: 1em;
+    /*esto dara 1em de espaciado entre cada elemento*/
+    justify-items: center;
+    /*para centrar horizontalmente*/
+    width: 260px;
+    overflow: hidden;
+    margin: 0 auto;
+    /*hacia los lados para que se centre horizontalmente*/
+}
+
+.about__icon{
+    /*es la imagen*/
+    width: 40px;
+
+}
+
+/*KNOWLEDGE*/
+
+.knowledge{
+    background-color: #fae9e9;
+    background-image: radial-gradient(#414bff 0.5px, #f4f3fd 0.5px);
+    background-size: 10px 10px;
+    /*esto lo traje de la pagina https://www.magicpattern.design/tools/css-backgrounds*/
+    overflow: hidden;
+}
+
+.knowledge__container{
+    /*es el contendor de todo en esta parte*/
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+    align-items: center;
+}
+.knowledge__picture{
+    max-width: 500px;
+    /*esta es la imagen*/
+}
+
+.knowledge__paragraph{
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+
+.knowledge__img{
+    width: 100%;
+    display: block;
+    /*esto es para evitar problemas de espacios */
+}
+
+/*PRICE*/
+
+.price{
+    /*principal*/
+   text-align: center; 
+}
+
+.price__table{
+    /*Contenedor de las tablas*/
+    padding-top: 60px;
+    /*espacio de arriba*/
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5em;
+    justify-content: space-evenly;
+    /*para dar un espacio equitativo horizontalmente*/
+    align-items: center;
+    /*Para centrar verticalmente*/
+}
+
+.price__element {
+    background-color: #e5e5f7;
+    text-align: center;
+    border-radius: 10px;
+    width: 330px;
+    padding: 40px;
+    --color-plan: #696871;
+    --color-price: #1d293f;
+    --bg-cta: #fff;
+    --color-cta: #5454D4;
+    --color-items: #696871;
+}
+
+.price__element--best{
+    /*este es el emento que va de diferente color , es el qeu tiene el modificador */
+    width: 370px;
+    padding: 60px 40px;
+    background-color: #ff7143;
+    --color-plan: rgb(255 255 255 / 75%);
+    /*aca le estamos dando la transparencia con el 75%*/
+    --color-price: #fff;
+    --bg-cta: #9f3919;
+    --color-cta: #fff;
+    --color-items: #fff;
+    /*para dar el color del boton lo hacemos en .price__cta*/
+}
+
+
+.price__name{
+    color: var(--color-plan);
+    margin-bottom: 15px;
+    font-weight: 300;
+}
+
+.price__price{
+    font-size: 2.5rem;
+    color: var(--color-price);
+}
+
+.price__items{
+    margin-top: 35px;
+    display: grid;
+    /*Dar espaciado*/
+    gap: 1em;
+    font-weight: 300;
+    font-size: 1.2rem;
+    margin-bottom: 50px;
+    color: var(--color-items);
+}
+
+.price__cta{
+    display: block;
+    /*para que ocupe todo el ancho*/
+    padding: 20px 0;
+    border-radius: 10px;
+    text-decoration: none;
+    background-color: var(--bg-cta);
+    font-weight: 600;
+    /*peso de fuente*/
+    color: var(--color-cta);
+    /*aca le estamos dando el color que represente a la variable cta*/
+    box-shadow: 0 0 1px rgba(0, 0, 0, .5);
+}
+
+
+
+/*TESTIMONY*/
+
+
+.testimony{
+    background-color:#e5e5f7;
+}
+
+.testimony__container{
+    display: grid;
+    grid-template-columns: 50px 1fr 50px;
+    /*aqui cree 3 columnas , la de la izquiera 50px, la de la derecha 50px y la del medio es el espacio sobrante*/
+    gap: 1em;
+    align-items: center;
+}
+
+.testimony__body{
+    /*es el contenedor del slider*/
+    display: grid;
+    grid-template-columns: 1fr max-content;
+    /*dos columnas , la primera de 1 fraccion y la segunda del maximo contenido*/
+    justify-content: space-between;
+    /*le estamos diciendo que el contenido se vaya a las esquinas*/
+    align-items: center;
+    /*centrado vertical*/
+    gap: 2em;
+    grid-column: 2/3;
+    /*que empiece en la segunda linea y termine en la tercera*/
+    grid-row: 1/2;
+    opacity: 0;
+    pointer-events: none;
+    /*esto es para que no puedas seleccionarlos*/
+}
+.testimony__body--show {
+    pointer-events: unset;
+    /*Para que vaya a la opacidad original*/
+    opacity: 1;
+    transition: opacity 1.5s ease-in-out;
+}
+
+.testimony__img{
+    /*esta es directamnete la imagen*/
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    /*es al 50% para redondear la imagen*/
+    object-fit: cover ;
+    /*se acomoda la imagen al circulo*/
+    object-position: 50% 30%;
+    /*Aca le estamos diciendo que esta horizontalmente centrada pero verticalmente al 30%*/
+}
+
+.testimony__texts{
+    /*TEXTO*/
+    max-width: 700px;
+    /*Para que no rebase este ancho*/
+}
+
+.testimony__courses{
+    background-color: royalBlue;
+    color: #fff;
+    display: inline-block;
+    padding: 5px;
+}
+
+.testimony__arrow{
+    /*FLECHAS*/
+    width: 90%;
+    cursor:pointer;
+}
+
+
+/*QUESTIONS*/
+
+
+.questions{
+    text-align: center;
+}
+
+.questions__container{
+    display: grid;
+    gap: 2em;
+    padding-top: 50px;
+    padding-bottom: 100px;
+}
+
+.questions__padding{
+    padding: 0;
+    transition: padding .2s;
+    border: 1px solid #5454d4;
+    border-radius: 6px;
+}
+
+.questions__padding--add{
+    padding-bottom: 30px;
+}
+
+.questions__answer{
+    padding: 30px 0 30px 0;
+    cursor: pointer;
+    font-size: 20px;
+    color: #001a49;
+}
+
+.questions__tittle{
+   /*Contenedor del h3*/
+   display: flex; 
+   padding: 30px 30px;
+   cursor: pointer;
+   color: var(--color-tittle);
+   justify-content: space-between;
+   /*esto es para mandarlo a la esquina*/
+}
+
+.questions__arrow{
+    /*es el span que tiene la imagen*/
+    border-radius:50%;
+    background-color: var(--color-tittle);
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: flex-end;
+}
